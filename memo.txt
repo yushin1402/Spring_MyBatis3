@@ -1,0 +1,35 @@
+・URL
+http://terasolunaorg.github.io/guideline/5.5.1.RELEASE/ja/Tutorial/TutorialTodo.html#id4
+
+
+①プロジェクトの作成
+mvn archetype:generateを利用して実装するインフラストラクチャ層向けのブランクプロジェクトを作成うる。
+※インフラストラクチャ層のアーキタイプ:
+	- java.util.Mapを利用したインメモリ実装のRepositoryImple
+	- MyBatis3を使用してデータベースアクセスするRepositoryImple
+	- Spring Data JPAを使用してデータベースにアクセスするRepositoryImple
+
+ここでは、MyBatis3を利用したブランクプロジェクトを作成する。
+
+【MVNコマンド】
+mvn archetype:generate -B\
+ -DarchetypeGroupId=org.terasoluna.gfw.blank\
+ -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype\
+ -DarchetypeVersion=5.5.1.RELEASE\
+ -DgroupId=com.example.todo\
+ -DartifactId=todo\
+ -Dversion=1.0.0-SNAPSHOT
+
+②プロジェクトのインポート: 
+	- 作成したブランクプロジェクトをSTSへインポートする。
+	  [File] -> [インポート] -> [Maven] -> [既存Mavenプロジェクト] -> [次へ]
+	- ルートディレクトリに作成したブランクプロジェクトを設定し完了する。
+	  C:\study\spring\terasolunaチュートリアル\todo
+	- パッケージエクスプローラーにtodoプロジェクトがインポートされたことを確認する。
+
+	※既にtodoプロジェクトが存在するというエラーとなった場合は、workspaceを切り替えてからインポートすること。
+	 今回は新たにC:\sts-4.12.0.RELEASE-workspace-todo_MyBatis3を作成してworkspaceとした。
+	 
+③デバッグサーバとしてtomcat9を設定(todo_mapでインストール済みの前提)
+	- ファイル→新規→その他→サーバ→次へ→Apache Tomcat 9.0サーバ→tomcatインストールディレクトリ(C:\apache-tomcat-9.0.46)
+	  →全て追加→完了
