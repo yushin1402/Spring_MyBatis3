@@ -33,3 +33,25 @@ mvn archetype:generate -B\
 ③デバッグサーバとしてtomcat9を設定(todo_mapでインストール済みの前提)
 	- ファイル→新規→その他→サーバ→次へ→Apache Tomcat 9.0サーバ→tomcatインストールディレクトリ(C:\apache-tomcat-9.0.46)
 	  →全て追加→完了
+
+④pom.xmlのwarプラグインのバージョンを3.3.2に修正(非互換回避)
+          <maven-war-plugin.version>3.3.2</maven-war-plugin.version> 
+
+⑤デバッグサーバの起動に成功したらGitHubに一旦登録:
+	 - https://github.com/で新しいリポジトリを作成する。(右上の+ボタンの nwe repogitory)
+	 - cd /c/study/spring/terasolunaチュートリアル/todo_myBatis3
+	 - echo "# Study Spring" >> README.md
+	 - git add .
+	 - git commit -m "first commit"
+	 - git remote add origin git@github.com:yushin1402/Spring_MyBatis3.git
+	 - git push -u origin master
+
+※ローカルをリモートの状態に復元したいときはgit reset --hard origin/masterを実行
+
+⑥todo_mapで作成したソースの移植
+	以下をtodo_mapからコピー:
+		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\app\todo
+		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\model\Todo.java
+		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\repository\todo
+		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\service\todo
+		- 
