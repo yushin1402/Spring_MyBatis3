@@ -54,4 +54,20 @@ mvn archetype:generate -B\
 		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\model\Todo.java
 		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\repository\todo
 		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\java\com\example\todo\domain\service\todo
-		- 
+		- C:\study\spring\terasolunaチュートリアル\todo_map\src\main\webapp\WEB-INF\views\todo
+⑦データベースのセットアップ:
+	H2 Database上にテーブルが作成されるようにするために、 src/main/resources/META-INF/spring/todo-infra.properties:
+		- database.url=jdbc:h2:mem:todo;DB_CLOSE_DELAY=-1;INIT=create table if not exists todo(todo_id varchar(36) primary key, todo_title varchar(30), finished boolean, created_at timestamp)
+	Repositoryの作成:
+		- TodoRepositoryはtodo_mapと同じでOK
+		- TodoRepositoryImpleはTodoRepositoryのインターフェースから自動生成されるため作成不要
+	Mapperの作成:
+		- todoRepositoryとTodoRepository.xmlをmapperタグのnamespace要素でマッピングする。
+		- resultMapタグで検索結果とJavaBeanのマッピングを行う。
+		  columにデータベースの列名を記述し、propertyにmodelのプロパティ名を記述することでマッピングする。
+		  これにより、検索結果が自動でmodelに格納され、そのままviewに渡すことが出来る。
+		- 以降はselectタグなどでSQLを定義する。各タグでidを定義し、todoRepositoryのメソッド名とマッピングする。
+		  また、resultMapを定義し、modelとの紐づけを設定する。
+		  また、parameterTypeには戻りの型を設定する。
+	動作確認: 
+		- list.jspをコピーしてなかったのでNotFoundが発生したが、list.jspを格納してうまくいった。
